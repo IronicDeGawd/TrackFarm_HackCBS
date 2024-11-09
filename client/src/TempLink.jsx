@@ -17,7 +17,7 @@ const App = () => {
   const quantityRef = useRef(null);
   const idRef = useRef(null);
 
-  const contractAddress = "0x28eEcA1B4619c94B8A4e49c88714C8CD2DFd66C9";
+  const contractAddress = "0x402ce0f5b65A7518a411EBF763b47bEa053B2ab6";
   const contractABI = TrackFarmABI;
 
   // Function to handle wallet connection

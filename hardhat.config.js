@@ -13,3 +13,5 @@ module.exports = {
     },
   },
 };
+
+//cmd to deploy : npx hardhat ignition deploy ./ignition/modules/TrackFarmModule.js --network amoy

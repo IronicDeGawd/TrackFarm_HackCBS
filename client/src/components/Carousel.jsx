@@ -44,7 +44,7 @@ function Carousel() {
 
   return (
     <div className="w-full\">
-      <div className="relative mx-auto my-10 max-w-[400px] h-[400px]">
+      <div className="relative mx-auto my-10 max-w-[500px] h-[500px]">
         {/* Carousel container */}
         <div className="relative overflow-hidden rounded-full border-4 border-green-800">
           <div
@@ -70,7 +70,7 @@ function Carousel() {
         {/* Left arrow */}
         <button
           onClick={prevSlide}
-          className="absolute z-10 size-10 top-80 right-10 flex justify-center items-center border-green-900 border-2 bg-white text-black font-bold text-2xl p-3 rounded-full hover:bg-green-700 hover:text-white hover:border-0"
+          className="absolute z-10 size-12 top-80 right-0 flex justify-center items-center border-green-900 border-2 bg-white text-black font-bold text-2xl p-3 rounded-full hover:bg-green-700 hover:text-white hover:border-0"
         >
           &lt;
         </button>
@@ -78,7 +78,7 @@ function Carousel() {
         {/* Right arrow */}
         <button
           onClick={nextSlide}
-          className="absolute z-10 size-10 bottom-20 right-2 flex justify-center items-center bg-green-700 text-white font-bold text-2xl p-3 rounded-full opacity-100 hover:border-green-900 hover:text-black hover:bg-white hover:border-2"
+          className="absolute z-10 size-12 bottom-20 right-8 flex justify-center items-center bg-green-700 text-white font-bold text-2xl p-3 rounded-full opacity-100 hover:border-green-900 hover:text-black hover:bg-white hover:border-2"
         >
           &gt;
         </button>

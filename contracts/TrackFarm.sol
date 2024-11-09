@@ -10,12 +10,6 @@ contract TrackFarm {
         uint256 quantity;
     }
 
-    struct ProcessorData {
-        string processType;
-        uint256 processDate;
-        uint256 quantityProcessed;
-    }
-
     struct ManufacturerData {
         string productType;
         uint256 manufactureDate;
@@ -29,33 +23,42 @@ contract TrackFarm {
     }
 
     struct ProductData {
-        uint256 productId;
+        string productId;
         FarmerData farmerData;
-        ProcessorData processorData;
         ManufacturerData manufacturerData;
         DistributorData distributorData;
     }
 
-    mapping(uint256 => ProductData) public products;
+    mapping(bytes32 => ProductData) public products;
 
-    event ProductAdded(uint256 productId, string message);
-    event FarmerDataUpdated(uint256 productId, string message);
-    event ProcessorDataUpdated(uint256 productId, string message);
-    event ManufacturerDataUpdated(uint256 productId, string message);
-    event DistributorDataUpdated(uint256 productId, string message);
+    event ProductAdded(string productId, string message);
+    event FarmerDataUpdated(string productId, string message);
+    event ManufacturerDataUpdated(string productId, string message);
+    event DistributorDataUpdated(string productId, string message);
+
+    // Internal function to get a unique identifier for the product
+    function getProductKey(
+        string memory _productId
+    ) internal pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_productId));
+    }
 
     // Function to initialize a product with farmer data
     function addProduct(
-        uint256 _productId,
+        string memory _productId,
         string memory _cropType,
         string memory _location,
         string memory _fertiliser,
         uint256 _harvestDate,
         uint256 _quantity
     ) public {
-        require(products[_productId].productId == 0, "Product already exists");
+        bytes32 productKey = getProductKey(_productId);
+        require(
+            bytes(products[productKey].productId).length == 0,
+            "Product already exists"
+        );
 
-        products[_productId] = ProductData({
+        products[productKey] = ProductData({
             productId: _productId,
             farmerData: FarmerData(
                 _cropType,
@@ -64,7 +67,6 @@ contract TrackFarm {
                 _harvestDate,
                 _quantity
             ),
-            processorData: ProcessorData("", 0, 0),
             manufacturerData: ManufacturerData("", 0, 0),
             distributorData: DistributorData("", 0, 0)
         });
@@ -72,29 +74,20 @@ contract TrackFarm {
         emit ProductAdded(_productId, "Product created with FarmerData");
     }
 
-    // Function for processor to add processing data
-    function updateProcessorData(
-        uint256 _productId,
-        string memory _processType,
-        uint256 _processDate,
-        uint256 _quantityProcessed
-    ) public {
-        products[_productId].processorData = ProcessorData(
-            _processType,
-            _processDate,
-            _quantityProcessed
-        );
-        emit ProcessorDataUpdated(_productId, "ProcessorData updated");
-    }
-
     // Function for manufacturer to add manufacturing data
     function updateManufacturerData(
-        uint256 _productId,
+        string memory _productId,
         string memory _productType,
         uint256 _manufactureDate,
         uint256 _quantityProduced
     ) public {
-        products[_productId].manufacturerData = ManufacturerData(
+        bytes32 productKey = getProductKey(_productId);
+        require(
+            bytes(products[productKey].productId).length != 0,
+            "Product does not exist"
+        );
+
+        products[productKey].manufacturerData = ManufacturerData(
             _productType,
             _manufactureDate,
             _quantityProduced
@@ -104,12 +97,18 @@ contract TrackFarm {
 
     // Function for distributor to add distribution data
     function updateDistributorData(
-        uint256 _productId,
+        string memory _productId,
         string memory _destination,
         uint256 _dispatchDate,
         uint256 _quantityDispatched
     ) public {
-        products[_productId].distributorData = DistributorData(
+        bytes32 productKey = getProductKey(_productId);
+        require(
+            bytes(products[productKey].productId).length != 0,
+            "Product does not exist"
+        );
+
+        products[productKey].distributorData = DistributorData(
             _destination,
             _dispatchDate,
             _quantityDispatched
@@ -119,8 +118,14 @@ contract TrackFarm {
 
     // Retrieve full product data by product ID
     function getProductData(
-        uint256 _productId
+        string memory _productId
     ) public view returns (ProductData memory) {
-        return products[_productId];
+        bytes32 productKey = getProductKey(_productId);
+        require(
+            bytes(products[productKey].productId).length != 0,
+            "Product does not exist"
+        );
+
+        return products[productKey];
     }
 }
