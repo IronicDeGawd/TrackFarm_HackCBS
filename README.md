@@ -65,16 +65,16 @@ We are building a **blockchain and IoT-based food supply chain transparency plat
 3. **Government Schools**:  
    Working with government schools to ensure quality control of mid-day meals, supporting better nutrition and safety for students.
 
+### [Presentation Link](https://www.canva.com/design/DAGGN8va1Rk/6TjZQMfIfRGRXvpIOHvxaw/edit?utm_content=DAGGN8va1Rk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 ---
 
-This revenue model helps drive our mission to deliver safe, quality food across critical sectors while leveraging government support to enhance supply chain transparency.
+### Team Details
 
-ppt link - https://www.canva.com/design/DAGGN8va1Rk/6TjZQMfIfRGRXvpIOHvxaw/edit?utm_content=DAGGN8va1Rk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+- **Member 1:** [Aditya Srivastava](#)  
+  _[LinkedIn Profile](https://www.linkedin.com/in/aditya-srivastava-ironic/)_
 
-Team Details :
-Member 1 : Aditya srivastava
-Member 2 : Vasundhara Pandey
+- **Member 2:** [Vasundhara Pandey](#)  
+  _[LinkedIn Profile](https://www.linkedin.com/in/vasundhara-pandey-557142265/)_
 
-```
-
-```
+---
