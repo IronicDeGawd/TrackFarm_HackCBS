@@ -42,6 +42,39 @@ We are building a **blockchain and IoT-based food supply chain transparency plat
    - **Consumers:** Empower consumers with detailed and trustworthy information to make informed decisions.
    - **Businesses:** Help businesses improve transparency, enhance brand trust, and ensure compliance with food safety standards.
 
+---
+
+## Revenue Model
+
+### Government Funds
+
+1. **Startup India Initiative**:  
+   Provides funding support, tax benefits, and mentorship for registered startups in India, enabling growth and development.
+
+2. **eNAM (Electronic National Agriculture Market)**:  
+   Supports startups that contribute to digital integration in the agricultural sector, including those focused on supply chain transparency.
+
+### Targeted Consumers
+
+1. **Hospitals**:  
+   Partnering with hospitals to ensure the highest quality and safety standards for food provided to patients, enhancing patient care.
+
+2. **Aviation**:  
+   Collaborating with airlines to maintain the quality and safety of in-flight meals, ensuring a safe dining experience for passengers.
+
+3. **Government Schools**:  
+   Working with government schools to ensure quality control of mid-day meals, supporting better nutrition and safety for students.
+
+---
+
+This revenue model helps drive our mission to deliver safe, quality food across critical sectors while leveraging government support to enhance supply chain transparency.
+
+ppt link - https://www.canva.com/design/DAGGN8va1Rk/6TjZQMfIfRGRXvpIOHvxaw/edit?utm_content=DAGGN8va1Rk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+Team Details :
+Member 1 : Aditya srivastava
+Member 2 : Vasundhara Pandey
+
 ```
 
 ```
