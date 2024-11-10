@@ -1,8 +1,7 @@
-// import React from 'react'
 import { Protect } from "@clerk/clerk-react";
 import { Link } from "react-router-dom";
 import io from "socket.io-client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import TrackFarmABI from "../components/TrackFarmABI.json";
 import FarmerForm from "../components/FarmerForm";
@@ -14,7 +13,7 @@ import ProductDetails from "../components/ProductDetails";
 const socket = io("http://localhost:3000");
 
 const AddProduct = () => {
-  //states
+  // states
   const [addproductId, setAddProductId] = useState("");
   const [getproductId, setGetProductId] = useState("");
   const [account, setAccount] = useState(null);
@@ -25,21 +24,20 @@ const AddProduct = () => {
   });
   const [product, setProduct] = useState({});
 
-  //refs
-  const cropRef = useRef(null);
-  const locRef = useRef(null);
-  const fertRef = useRef(null);
-  const dateRef = useRef(null);
-  const quantityRef = useRef(null);
-  const idRef = useRef(null);
+  // New state variables for each input field
+  const [cropType, setCropType] = useState("");
+  const [location, setLocation] = useState("");
+  const [fertiliser, setFertiliser] = useState("");
+  const [harvestDate, setHarvestDate] = useState("");
+  const [quantity, setQuantity] = useState("");
 
-  const productTypeRef = useRef(null);
-  const manufactureDateRef = useRef(null);
-  const quantityProducedRef = useRef(null);
+  const [productType, setProductType] = useState("");
+  const [manufactureDate, setManufactureDate] = useState("");
+  const [quantityProduced, setQuantityProduced] = useState("");
 
-  const destinationRef = useRef(null);
-  const dispatchDateRef = useRef(null);
-  const quantityDispatchedRef = useRef(null);
+  const [destination, setDestination] = useState("");
+  const [dispatchDate, setDispatchDate] = useState("");
+  const [quantityDispatched, setQuantityDispatched] = useState("");
 
   const contractAddress = "0xdA6f6bb7e745E35c9390c881d12151Be694f093C";
   const contractABI = TrackFarmABI;
@@ -87,13 +85,11 @@ const AddProduct = () => {
 
     checkIfWalletIsConnected();
     init();
-    // console.log(state);
   }, [contractABI]);
 
   //function to get product details from contract storage
   const getProductDetails = async () => {
     let id = getproductId;
-    console.log(id);
     const { contract } = state;
     try {
       const tx = await contract.getProductData(id);
@@ -103,24 +99,15 @@ const AddProduct = () => {
     } catch (error) {
       console.log(error);
     }
-
-    console.log("Details fetched");
   };
 
   //function to add the detail to contract storage
   const addFarmerDetails = async () => {
     const { contract } = state;
 
-    let productId = addproductId;
-    let cropType = cropRef.current.value;
-    let location = locRef.current.value;
-    let fertiliser = fertRef.current.value;
-    let harvestDate = dateRef.current.value;
-    let quantity = quantityRef.current.value;
-
     try {
       const tx = await contract.addProduct(
-        productId,
+        addproductId,
         cropType,
         location,
         fertiliser,
@@ -129,25 +116,19 @@ const AddProduct = () => {
       );
       await tx.wait();
       setAddProductId("");
-      cropType = "";
-      location = "";
-      fertiliser = "";
-      harvestDate = "";
-      quantity = "";
+      setCropType("");
+      setLocation("");
+      setFertiliser("");
+      setHarvestDate("");
+      setQuantity("");
     } catch (error) {
       console.log(error);
     }
-    product;
-    console.log("Details Added");
   };
 
   const addManufacturerDetails = async () => {
     const { contract } = state;
-
     let productId = addproductId;
-    let productType = productTypeRef.current.value;
-    let manufactureDate = manufactureDateRef.current.value;
-    let quantityProduced = quantityProducedRef.current.value;
 
     try {
       const tx = await contract.updateManufacturerData(
@@ -158,22 +139,17 @@ const AddProduct = () => {
       );
       await tx.wait();
       setAddProductId("");
-      productType = "";
-      manufactureDate = "";
-      quantityProduced = "";
+      setProductType("");
+      setManufactureDate("");
+      setQuantityProduced("");
     } catch (error) {
       console.log(error);
     }
-    console.log("Manufacturer Details Added");
   };
 
   const addDistributorDetails = async () => {
     const { contract } = state;
-
     let productId = addproductId;
-    let destination = destinationRef.current.value;
-    let dispatchDate = dispatchDateRef.current.value;
-    let quantityDispatched = quantityDispatchedRef.current.value;
 
     try {
       const tx = await contract.updateDistributorData(
@@ -184,13 +160,12 @@ const AddProduct = () => {
       );
       await tx.wait();
       setAddProductId("");
-      destination = "";
-      dispatchDate = "";
-      quantityDispatched = "";
+      setDestination("");
+      setDispatchDate("");
+      setQuantityDispatched("");
     } catch (error) {
       console.log(error);
     }
-    console.log("Distributor Details Added");
   };
 
   const handleGetUidScanner = () => {
@@ -204,6 +179,7 @@ const AddProduct = () => {
       socket.off("scan-uid");
     }
   };
+
   const handleAddUidScanner = () => {
     try {
       socket.on("scan-uid", (uid) => {
@@ -219,74 +195,78 @@ const AddProduct = () => {
   return (
     <>
       <Navbar />
-
-      <div className="w-full pt-24 h-screen flex flex-col justify-center items-center">
+      <div className="w-full pt-6 min-h-screen flex flex-col justify-center items-center">
         <div className="flex flex-col w-full items-center justify-center">
           <header>
             {!account ? (
               <button
-                className="bg-green-700 hover:bg-green-900 mb-4 rounded-md text-white p-2 w-2/4"
+                className="bg-green-700 hover:bg-green-900 mb-4 rounded-md text-white p-4 w-1/3"
                 onClick={connectWallet}
               >
                 Connect Wallet
               </button>
             ) : (
-              <>
-                <p className="bg-green-700 mb-4 rounded-md text-white p-2">
-                  Connected Account: {account}
-                </p>
-              </>
+              <p className="bg-green-700 mb-2 rounded-md text-white p-4 w-full text-center">
+                Connected Account: {account}
+              </p>
             )}
           </header>
         </div>
         <Protect
           fallback={
-            <div className="justify-center w-full h-screen flex items-center text-3xl">
-              Not enough permissions, Please Login!!
-              <Link
-                className="mx-3 text-green-700 underline font-semibold"
-                to="/"
-              >
+            <div className="flex items-center justify-center w-full h-screen text-3xl">
+              <p>Not enough permissions. Please Login!</p>
+              <Link className=" text-green-700 underline font-semibold" to="/">
                 Head Back Home
               </Link>
             </div>
           }
         >
-          <div className="w-full main-content mt-26 grid grid-rows-2 place-items-center">
+          <div className="w-full grid grid-rows-2 place-items-center gap-6">
             <div className="w-full flex items-center justify-center">
               <ProductDetails
                 product={product}
                 handleGetUidScanner={handleGetUidScanner}
-                idRef={idRef}
                 getProductDetails={getProductDetails}
                 getproductId={getproductId}
               />
             </div>
-            <div className="flex w-full justify-center items-center flex-row">
+            <div className="flex w-full justify-center items-center flex-wrap gap-8">
               <FarmerForm
                 handleAddUidScanner={handleAddUidScanner}
                 addproductId={addproductId}
-                cropRef={cropRef}
-                locRef={locRef}
-                fertRef={locRef}
-                dateRef={dateRef}
-                quantityRef={quantityRef}
+                cropType={cropType}
+                setCropType={setCropType}
+                location={location}
+                setLocation={setLocation}
+                fertiliser={fertiliser}
+                setFertiliser={setFertiliser}
+                harvestDate={harvestDate}
+                setHarvestDate={setHarvestDate}
+                quantity={quantity}
+                setQuantity={setQuantity}
                 addProductDetails={addFarmerDetails}
               />
               <ManufacturerForm
                 handleAddUidScanner={handleAddUidScanner}
                 addproductId={addproductId}
-                productTypeRef={productTypeRef}
-                manufactureDateRef={manufactureDateRef}
-                quantityProducedRef={quantityProducedRef}
+                productType={productType}
+                setProductType={setProductType}
+                manufactureDate={manufactureDate}
+                setManufactureDate={setManufactureDate}
+                quantityProduced={quantityProduced}
+                setQuantityProduced={setQuantityProduced}
                 addProductDetails={addManufacturerDetails}
               />
               <DistributorForm
                 handleAddUidScanner={handleAddUidScanner}
                 addproductId={addproductId}
-                destinationRef={destinationRef}
-                dispatchDateRef={dispatchDateRef}
-                quantityDispatchedRef={quantityDispatchedRef}
+                destination={destination}
+                setDestination={setDestination}
+                dispatchDate={dispatchDate}
+                setDispatchDate={setDispatchDate}
+                quantityDispatched={quantityDispatched}
+                setQuantityDispatched={setQuantityDispatched}
                 addProductDetails={addDistributorDetails}
               />
             </div>

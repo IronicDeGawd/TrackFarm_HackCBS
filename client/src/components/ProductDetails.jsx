@@ -66,7 +66,7 @@ const ProductDetails = ({
         <>
           <div className="w-full p-4">
             <h2 className="underline text-center">Product Details</h2>
-            <p className="text-center m-4">
+            <p className="text-center">
               <strong>Product ID:</strong> {productId}
             </p>
             <div className="grid grid-cols-3 w-full gap-4">
