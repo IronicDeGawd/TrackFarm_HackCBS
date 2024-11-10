@@ -9,7 +9,7 @@ import {
 
 function Navbar() {
   return (
-    <div className="absolute w-full h-26 flex gap-2 bg-slate-100">
+    <div className="w-full h-26 flex gap-2 bg-slate-100">
       <nav className="w-full flex justify-evenly items-center m-3 gap-3">
         <h2 className="font-bold text-4xl text-green-800">TrackFarm</h2>
 
