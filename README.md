@@ -1,4 +1,16 @@
-### Project Overview
+## Project Working
+
+
+- [**Presentation Link**](https://www.canva.com/design/DAGGN8va1Rk/6TjZQMfIfRGRXvpIOHvxaw/edit?utm_content=DAGGN8va1Rk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+- [**Youtube Link** : Shows Working of the protoype!](https://youtu.be/uWmRi-CqKyo)
+
+- [**Devolio Link** : Project details on devfolio page!](https://devfolio.co/projects/trackfarm-2cf2)
+
+
+
+## Project Overview
+
 
 #### **Problem Statement**
 
@@ -46,7 +58,7 @@ We are building a **blockchain and IoT-based food supply chain transparency plat
 
 ## Revenue Model
 
-### Government Funds
+#### Government Funds
 
 1. **Startup India Initiative**:  
    Provides funding support, tax benefits, and mentorship for registered startups in India, enabling growth and development.
@@ -54,7 +66,7 @@ We are building a **blockchain and IoT-based food supply chain transparency plat
 2. **eNAM (Electronic National Agriculture Market)**:  
    Supports startups that contribute to digital integration in the agricultural sector, including those focused on supply chain transparency.
 
-### Targeted Consumers
+#### Targeted Consumers
 
 1. **Hospitals**:  
    Partnering with hospitals to ensure the highest quality and safety standards for food provided to patients, enhancing patient care.
@@ -65,11 +77,10 @@ We are building a **blockchain and IoT-based food supply chain transparency plat
 3. **Government Schools**:  
    Working with government schools to ensure quality control of mid-day meals, supporting better nutrition and safety for students.
 
-### [Presentation Link](https://www.canva.com/design/DAGGN8va1Rk/6TjZQMfIfRGRXvpIOHvxaw/edit?utm_content=DAGGN8va1Rk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
----
 
-### Team Details
+
+## Team Details
 
 - **Member 1:** [Aditya Srivastava](#)  
   _[LinkedIn Profile](https://www.linkedin.com/in/aditya-srivastava-ironic/)_
